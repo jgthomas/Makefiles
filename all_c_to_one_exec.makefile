@@ -1,0 +1,68 @@
+#
+# Combines ALL source files in the directory 
+# into ONE executable via creating object files 
+# for each of those source files.
+#
+# Only those source files that have been changed 
+# are re-compiled, as the object files for other
+# source files already exist.
+#
+
+#--------------COMPILER--------------#
+
+# the compiler to use
+CC = gcc
+
+# flags:
+#  -g    adds debugging information to the executable file
+#  -Wall turns on most, but not all, compiler warnings
+CFLAGS  = -g -Wall
+
+
+#--------------FILES--------------#
+
+# the name of the final executable
+TARGET = try
+
+# Get all c files in the dir and their names as
+# objects files
+SOURCES := $(wildcard *.c)
+OBJECTS := $(SOURCES:%.c=%.o)
+
+
+#--------------TARGETS--------------#
+
+# Phony are targets that are not associated with filenames.
+#
+# Normally, make only runs if the file targets have 
+# changed. Phony targets are always out-of-date and
+# so always run when called. Often 'all' would also be
+# a phony target, but this makefile is designed to combine 
+# all files, so we don't want it to run if no changes have 
+# occurred.
+.PHONY: clean test
+
+# make
+#
+# 1. Build all the individual object files from source
+# 2. Combine those object files into the final executable
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# make clean
+#
+# delete all object files and executables
+clean:
+	$(RM) $(TARGET) $(OBJECTS)
+
+# make test
+#
+# list all source and object files
+test:
+	@echo "SOURCES = ${SOURCES}"
+	@echo "OBJECTS = ${OBJECTS}"
