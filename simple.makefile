@@ -1,5 +1,5 @@
 #
-# Used to compile ONE source file into ONE executable
+# Compile ONE source file into ONE executable
 #
 # EXAMPLE:
 #

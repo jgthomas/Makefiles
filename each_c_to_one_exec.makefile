@@ -1,17 +1,15 @@
 #
-# Compile ALL source files in the directory 
-# into ONE executable via creating object files 
-# for each of those source files.
+# Compile EACH source file in the directory 
+# into ONE executable. 
 #
 # Only those source files that have been changed 
-# are re-compiled, as the object files for other
-# source files already exist.
+# are re-compiled.
 #
 # EXAMPLE:
 #
 # sources: one.c, two.c, three.c
 # command: make
-# output: one.o, two.o, three.o, executable
+# output: one, two, three
 #
 
 #--------------COMPILER--------------#
@@ -27,13 +25,10 @@ CFLAGS  = -g -Wall
 
 #--------------FILES--------------#
 
-# The name of the final executable
-TARGET = program
-
-# Get all c files in the dir and their names as
-# objects files
+# Get all .c files in the dir and their names 
+# with the .c extension stripped 
 SOURCES := $(wildcard *.c)
-OBJECTS := $(SOURCES:%.c=%.o)
+PROGS := $(patsubst %.c,%,$(SOURCES))
 
 
 #--------------TARGETS--------------#
@@ -50,25 +45,21 @@ OBJECTS := $(SOURCES:%.c=%.o)
 
 # make
 #
-# 1. Build all the individual object files from source
-# 2. Combine those object files into the final executable
-all: $(TARGET)
+# Build executables for each of the .c files
+all: $(PROGS)
 
-$(TARGET): $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%: %.c
+	$(CC) $(CFLAGS) -o $@ $<
 
 # make clean
 #
 # delete all object files and executables
 clean:
-	$(RM) $(TARGET) $(OBJECTS)
+	$(RM) $(PROGS)
 
 # make test
 #
 # list all source and object files
 test:
 	@echo "SOURCES = ${SOURCES}"
-	@echo "OBJECTS = ${OBJECTS}"
+	@echo "OBJECTS = ${PROGS}"
