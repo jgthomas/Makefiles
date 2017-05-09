@@ -69,4 +69,4 @@ clean:
 # list all source and object files
 test:
 	@echo "SOURCES = ${SOURCES}"
-	@echo "OBJECTS = ${PROGS}"
+	@echo "PROGS = ${PROGS}"
