@@ -1,5 +1,5 @@
 #
-# Combines ALL source files in the directory 
+# Compiles ALL source files in the directory 
 # into ONE executable via creating object files 
 # for each of those source files.
 #
@@ -7,13 +7,19 @@
 # are re-compiled, as the object files for other
 # source files already exist.
 #
+# EXAMPLE:
+#
+# sources: one.c, two.c, three.c
+# command: make
+# output: one.o, two.o, three.o, executable
+#
 
 #--------------COMPILER--------------#
 
-# the compiler to use
+# The compiler to use
 CC = gcc
 
-# flags:
+# Flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -g -Wall
@@ -21,8 +27,8 @@ CFLAGS  = -g -Wall
 
 #--------------FILES--------------#
 
-# the name of the final executable
-TARGET = try
+# The name of the final executable
+TARGET = program
 
 # Get all c files in the dir and their names as
 # objects files

@@ -1,5 +1,5 @@
-# Used to compile one named [filename.c] into an executable
-# called [filename]
+#
+# Used to compile ONE source file into ONE executable
 #
 # EXAMPLE:
 #
