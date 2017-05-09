@@ -46,6 +46,13 @@ PROGS := $(patsubst %.c,%,$(SOURCES))
 # make
 #
 # Build executables for each of the .c files
+#
+# $@ means all, the first output variable
+# $< means the first source
+#
+# Combined, it means build an output file for each
+# of the named PROGS, based on the associated source file
+#
 all: $(PROGS)
 
 %: %.c
