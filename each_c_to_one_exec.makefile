@@ -17,10 +17,13 @@
 # The compiler to use
 CC = gcc
 
-# Flags:
+# Compiler flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -g -Wall
+
+# Library linking
+LDLIBS = 
 
 
 #--------------FILES--------------#
@@ -56,7 +59,7 @@ PROGS := $(patsubst %.c,%,$(SOURCES))
 all: $(PROGS)
 
 %: %.c
-	$(CC) $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(LDLIBS) -o $@ $<
 
 # make clean
 #

@@ -32,6 +32,8 @@ CC = gcc
 #  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -g -Wall
 
+# Library linking
+LDLIBS = 
 
 #--------------FILES--------------#
 
@@ -60,10 +62,10 @@ SHARED = shared_sort.o
 all: $(EXECUTABLES)
 
 tester: tester.o $(SHARED)
-	$(CC) $(CFLAGS) $(SHARED) tester.o -o tester
+	$(CC) $(CFLAGS) $(SHARED) tester.o $(LDLIBS) -o tester
 
 tester2: tester2.o $(SHARED)
-	$(CC) $(CFLAGS) $(SHARED) tester2.o -o tester2
+	$(CC) $(CFLAGS) $(SHARED) tester2.o $(LDLIBS) -o tester2
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@

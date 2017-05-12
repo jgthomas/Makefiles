@@ -16,6 +16,9 @@ CC = gcc
 #  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -g -Wall
 
+# Library linking
+LDLIBS = 
+
 # the build target executable:
 TARGET = myprog
 
