@@ -21,7 +21,7 @@ CC = gcc
 # Compiler flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -g -Wall
+CFLAGS  = -g -Wall -Wextra
 
 # Library linking
 LDLIBS = 
@@ -31,6 +31,9 @@ LDLIBS =
 
 # The name of the final executable
 EXECUTABLE = program
+
+# Header files for dependencies
+HEADERS =
 
 # Source files to include, plus conversion to object files
 SOURCES = 
@@ -55,11 +58,18 @@ OBJECTS := $(SOURCES:%.c=%.o)
 # 2. Combine those object files into the final executable
 all: $(EXECUTABLE)
 
-$(EXECUTABLE): $(OBJECTS)
+$(EXECUTABLE): $(OBJECTS) $(HEADERS) makefile
 	$(CC) $(CFLAGS) $(OBJECTS) $(LDLIBS) -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+# dependencies
+#
+# Files on which the object files depend: typically header
+# files and makefiles. This ensures that object files are
+# re-compiled when any of these are dependencies are changed.
+$(OBJECTS): $(HEADERS) makefile
 
 # make clean
 #
