@@ -35,6 +35,7 @@ TARGET = program
 
 # Get all c files in the dir and their names as
 # objects files
+HEADERS := $(wildcard *.h)
 SOURCES := $(wildcard *.c)
 OBJECTS := $(SOURCES:%.c=%.o)
 
@@ -57,11 +58,18 @@ OBJECTS := $(SOURCES:%.c=%.o)
 # 2. Combine those object files into the final executable
 all: $(TARGET)
 
-$(TARGET): $(OBJECTS)
+$(TARGET): $(OBJECTS) $(HEADERS) makefile
 	$(CC) $(CFLAGS) $(OBJECTS) $(LDLIBS) -o $(TARGET)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+# dependencies
+#
+# Files on which the object files depend: typically header
+# files and makefiles. This ensures that object files are
+# re-compiled when any of these dependencies are changed.
+$(OBJECTS): $(HEADERS) makefile
 
 # make clean
 #

@@ -68,7 +68,7 @@ $(EXECUTABLE): $(OBJECTS) $(HEADERS) makefile
 #
 # Files on which the object files depend: typically header
 # files and makefiles. This ensures that object files are
-# re-compiled when any of these are dependencies are changed.
+# re-compiled when any of these dependencies are changed.
 $(OBJECTS): $(HEADERS) makefile
 
 # make clean
