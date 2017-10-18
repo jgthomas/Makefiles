@@ -21,7 +21,9 @@ CC = gcc
 # Compiler flags:
 #  -g    adds debugging information to the executable file
 #  -Wall turns on most, but not all, compiler warnings
-CFLAGS  = -g -Wall -Wextra
+#  -Wextra   'extra' warnings
+#  -Werror   treat errors as warnings, and refuse to compile
+CFLAGS  = -g -Wall -Wextra -Werror
 
 # Library linking
 LDLIBS = 
