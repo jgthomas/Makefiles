@@ -14,7 +14,7 @@ INCLUDES = $(HEADERS_1) $(HEADERS_2) $(HEADERS_3)
 # SOURCE FILES
 SOURCE = $(SOURCE_1) $(SOURCE_2) $(SOURCE_3)
 
-# PATHS
+# PATHS - to search for the wildcarded filetypes
 vpath %.h $(INCLUDES)
 vpath %.c $(SOURCE)
 
@@ -31,8 +31,10 @@ LDLIBS =
 TARGET =
 
 # FILES
-HEADERS = 
-SOURCES = 
+PWD_HEADERS := $(wildcard *.h)
+PWD_SOURCES := $(wildcard *.c)
+HEADERS = $(PWD_HEADERS)
+SOURCES = $(PWD_SOURCES)
 OBJECTS := $(SOURCES:%.c=%.o)
 
 # TARGETS
