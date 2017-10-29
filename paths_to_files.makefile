@@ -43,7 +43,7 @@ OBJECTS := $(SOURCES:%.c=%.o)
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS) $(HEADERS) Makefile
-	$(CC) $(CFLAGS) $(OBJECTS) -o $(TARGET)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LDLIBS) -o $(TARGET)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
