@@ -1,9 +1,8 @@
-# HEADERS - paths to search for includes
+# PATHS - to search for the headers and source files
 HEADERS_1 = 
 HEADERS_2 = 
 HEADERS_3 = 
 
-# SOURCES - paths to search for source files
 SOURCE_1 = 
 SOURCE_2 = 
 SOURCE_3 = 
@@ -11,7 +10,6 @@ SOURCE_3 =
 INCLUDES = $(HEADERS_1) $(HEADERS_2) $(HEADERS_3)
 SOURCE = $(SOURCE_1) $(SOURCE_2) $(SOURCE_3)
 
-# PATHS - to search for the wildcarded filetypes
 vpath %.h $(INCLUDES)
 vpath %.c $(SOURCE)
 
